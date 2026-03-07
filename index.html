@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestros 3 años</title>
+  <style>
+    :root {
+      --bg1: #fff5f7;
+      --bg2: #ffe4ec;
+      --card: rgba(255, 255, 255, 0.82);
+      --text: #4b2333;
+      --accent: #d94f7a;
+      --accent-dark: #b73c64;
+      --soft: #fff0f4;
+      --shadow: 0 12px 35px rgba(135, 54, 85, 0.18);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, #ffdbe5 0%, transparent 30%),
+        radial-gradient(circle at bottom right, #ffe9ef 0%, transparent 25%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height: 100vh;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 28px 0 18px;
+    }
+
+    .hero-card {
+      background: var(--card);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-top {
+      padding: 26px 22px 18px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(217,79,122,0.12), rgba(255,255,255,0.12));
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--accent-dark);
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(217,79,122,0.12);
+      font-size: 0.95rem;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 7vw, 4rem);
+      margin: 16px 0 10px;
+      line-height: 1.05;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 3.5vw, 1.2rem);
+      max-width: 760px;
+      margin: 0 auto;
+      opacity: 0.92;
+      line-height: 1.6;
+    }
+
+    .hero-photo {
+      position: relative;
+      min-height: 280px;
+      background: linear-gradient(135deg, #ffd4df, #fff8fa);
+      display: grid;
+      place-items: center;
+      padding: 16px;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: min(56vw, 430px);
+      object-fit: cover;
+      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+      border: 6px solid rgba(255,255,255,0.9);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-note {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      background: rgba(255,255,255,0.9);
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 0.92rem;
+      max-width: 240px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    }
+
+    .section {
+      padding: 18px 0 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 4.8vw, 2.2rem);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .section-intro {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 24px;
+      line-height: 1.65;
+      opacity: 0.9;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .moments {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .photo-box {
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(135deg, #ffd3de, #fff8fa);
+      overflow: hidden;
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      line-height: 1.65;
+      margin-bottom: 0;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      align-items: start;
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    .year-tag {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: white;
+      border-radius: 16px;
+      padding: 14px 12px;
+      font-weight: 700;
+      text-align: center;
+      min-height: 74px;
+      display: grid;
+      place-items: center;
+    }
+
+    .letter {
+      padding: 12px 0 6px;
+    }
+
+    .letter-box {
+      background: rgba(255,255,255,0.88);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.6);
+      line-height: 1.8;
+      font-size: 1.04rem;
+    }
+
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery .photo-box {
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-lg);
+    }
+
+    .gallery .photo-box img {
+      border-radius: var(--radius-lg);
+    }
+
+    .footer {
+      padding: 26px 0 38px;
+      text-align: center;
+      opacity: 0.82;
+      font-size: 0.95rem;
+    }
+
+    .edit-tip {
+      margin: 22px auto 0;
+      max-width: 900px;
+      background: rgba(255,255,255,0.7);
+      border: 1px dashed rgba(183,60,100,0.35);
+      padding: 16px 18px;
+      border-radius: 18px;
+      line-height: 1.6;
+      font-size: 0.97rem;
+    }
+
+    .heart {
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+
+    @media (max-width: 860px) {
+      .moments {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-note {
+        position: static;
+        margin-top: 12px;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 18px;
+      }
+
+      .hero-top {
+        padding: 22px 16px 16px;
+      }
+
+      .hero-photo {
+        padding: 12px;
+      }
+
+      .hero-photo img {
+        height: 240px;
+        border-width: 4px;
+      }
+
+      .moments,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+
+      .year-tag {
+        min-height: auto;
+      }
+
+      .letter-box {
+        padding: 20px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="hero-top">
+          <div class="badge">3 años juntos 💖</div>
+          <h1>Nuestra historia</h1>
+          <p class="hero-subtitle">
+            Una forma simple de recordarte lo especial que sos para mi y lo feliz que me haces.
+          </p>
+        </div>
+
+        <div class="hero-photo">
+          <img src="img/fotoprincipal.jpeg" alt="Foto principal de la pareja">
+          <div class="hero-note">
+            <strong>De Jese para Jeisel:</strong><br>
+            Vos siempre tenes que tener en mente lo mucho que te amo muchachita.
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Tres años, tres capítulos</h2>
+        <p class="section-intro">
+          Tres años que han venido con retos, risas y muchos momentos que no podria imaginar sin vos.
+        </p>
+
+        <div class="grid moments">
+          <article class="card">
+            <div class="photo-box">
+              <!-- FOTO 1 -->
+              <img src="img/inicios.jpeg"> alt="Recuerdo 1" />
+            </div>
+            <div class="card-body">
+              <h3>Cómo empezó todo</h3>
+              <p>
+                Es raro pensar que todo empezo por una coincidencia, pero asi fue, no cambiaria por nada del mundo, y siempre agradecere al destino y Diosito por permitirnos coincidir en un mismo lugar y ponerme a la par de tan perfecta mujer.
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="photo-box">
+              <!-- FOTO 2 -->
+              <img src="img/segunda.jpeg" alt="Recuerdo 2" />
+            </div>
+            <div class="card-body">
+              <h3>Nuestros mejores recuerdos</h3>
+              <p>
+                Siempre recordare con mucho amor y cariño las noches en las que simpelemente puedo platicar con vos libremente aunque sean pocos momentos, estar a tu lado y tenerte cerca escucharte y poder reirnos y platicar me hace muy feliz, puede sonar poco pero disfruto que momentos tan simples sean tan perfectos estando con vos.
+              </p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="photo-box">
+              <!-- FOTO 3 -->
+              <img src="img/pastel.jpeg" alt="Recuerdo 3" />
+            </div>
+            <div class="card-body">
+              <h3>Lo que viene</h3>
+              <p>
+                El futuro nos depara muchas cosas, espero tenerte a mi lado para poder vivirlo juntos, sos la mujer con la que quiero estar, y la personita mas dulce que siempre tendra mi corazon y amor a su disposicion.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Mis cosas favoritas de vos</h2>
+        <p class="section-intro">
+          Sin olvidar que todo de vos me encanta, pero algunas cosas que me encantan mas son:
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="year-tag">1</div>
+            <div>
+              <h3>Jeisel es una persona que perfectamente se le puede definir por su creatividad.</h3>
+              <p>
+                Tu forma de ingeniar soluciones de hacer cosas diferentes y creativas me encanta, y siempre me sorprenden tus ideas, pienso como si quiera alguien puede dudar de los talentos de esta mujer si es el estandard que todas deberian aspirar a ser.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="year-tag">2</div>
+            <div>
+              <h3>Jeisel es una mujer linda</h3>
+              <p>
+                Jeisel es una mujer linda por simple que suene decirlo tiene mucho mas, el como te vestis el como te arreglas tu estilo, tu forma de ser, son cosas que me encantan, sos una mujer guapa, inteligente y divertida, no puedo evitar verte y decir ella es mi mujer la mas preciosa de todas. 
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="year-tag">3</div>
+            <div>
+              <h3>Jeisel y su enorme corazon</h3>
+              <p>
+                Algo que siempre he valorado mucho y es sin duda tu mayor virtud es tu corazon, tu forma tan sincera de amar y preocuparte por las personas que queres, el ver ese tipo de amor solo demuestra el gran corazon que tenes y que no mereces menos, una niña sensible y cariñosa, por eso siempre hare lo posible para cuidar el corazon de mi princesa hermosa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section letter">
+      <div class="container">
+        <h2 class="section-title">Carta para ti</h2>
+        <div class="letter-box">
+          <p>
+            Miammor,
+          </p>
+          <p>
+            No hay nada que no te haya dicho ya, han sido 3 años muy lindos en los que ambos hemos aprendido sobre el amor y todo lo que conlleva estar con una persona, he aprendido lo que es el amor sincer y puro y lo que es amar una persona incondicionalemente en las buenas y en las malas, pase lo que pase siempre vas a tenerme ahi para ser tu pilar en la dia mas brillante y en la noche mas oscura solo puedo pensar en formas diferentes de demostrarte lo valiosa que sos para mi pero a la vez se que no existe en este mundo forma de demostrar tanto amor y si la existiera una forma se que seria una mentira por que no hay forma de demostrar algo tan infinito e increible.
+          </p>
+          <p>
+            Gracias por hacerme un hombre tan feliz, por haber llegado a mi vida a hacerla mucho mejor, espero estos años tambien poder haber hecho que tu vida fuera un poco mas feliz.
+          </p>
+          <p>
+            Te amo mucho,<br>
+            <strong>De Jese para Jeisel/strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Galería de recuerdos</h2>
+        <p class="section-intro">
+        </p>
+
+        <div class="grid gallery">
+          <div class="photo-box">
+            <!-- GALERÍA FOTO 1 -->
+            <img src="img/recuero1.jpeg" alt="Foto de galería 1" />
+          </div>
+          <div class="photo-box">
+            <!-- GALERÍA FOTO 2 -->
+            <img src="img/recuerdo2.jpeg" alt="Foto de galería 2" />
+          </div>
+          <div class="photo-box">
+            <!-- GALERÍA FOTO 3 -->
+            <img src="img/recuerdo3.jpeg" alt="Foto de galería 3" />
+          </div>
+          <div class="photo-box">
+            <!-- GALERÍA FOTO 4 -->
+            <img src="img/recuerdo4.jpeg" alt="Foto de galería 4" />
+          </div>
+        </div>
+
+        <div class="edit-tip">
+          <strong></strong> 
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    Hecho con amor y cariño para celebrar <span class="heart">3 años</span> con la mejor novia.
+  </footer>
+</body>
+</html>
