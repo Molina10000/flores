@@ -3,485 +3,812 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nuestros 3 años</title>
+  <title>Regalo con Flores</title>
+
   <style>
-    :root {
-      --bg1: #fff5f7;
-      --bg2: #ffe4ec;
-      --card: rgba(255, 255, 255, 0.82);
-      --text: #4b2333;
-      --accent: #d94f7a;
-      --accent-dark: #b73c64;
-      --soft: #fff0f4;
-      --shadow: 0 12px 35px rgba(135, 54, 85, 0.18);
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --max: 1100px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    * { box-sizing: border-box; }
+    :root {
+      --bg1: #fff8fb;
+      --bg2: #f6e7f0;
+      --bg3: #ecd3e0;
 
-    html {
-      scroll-behavior: smooth;
+      --box1: #f1a6c8;
+      --box2: #d76c9d;
+      --box3: #9b3f68;
+
+      --ribbon1: #fff0f7;
+      --ribbon2: #f5cade;
+      --ribbon3: #d88aaa;
+
+      --stem1: #4b8a46;
+      --stem2: #2d622f;
+      --leaf1: #75b861;
+      --leaf2: #397b35;
+      --leaf3: #214b24;
+
+      --petal1: #ffd0ea;
+      --petal2: #ff8dc6;
+      --petal3: #ef5ca5;
+      --petal4: #b93475;
+
+      --petalB1: #ffe0f3;
+      --petalB2: #d99fff;
+      --petalB3: #b46ef2;
+      --petalB4: #7d46bf;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
     }
 
     body {
-      margin: 0;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
       background:
-        radial-gradient(circle at top left, #ffdbe5 0%, transparent 30%),
-        radial-gradient(circle at bottom right, #ffe9ef 0%, transparent 25%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-      min-height: 100vh;
+        radial-gradient(circle at 50% 18%, rgba(255,255,255,.95), transparent 25%),
+        radial-gradient(circle at 30% 10%, rgba(255,210,235,.65), transparent 24%),
+        radial-gradient(circle at 70% 14%, rgba(229,196,255,.50), transparent 22%),
+        linear-gradient(160deg, var(--bg1), var(--bg2) 55%, var(--bg3));
+      perspective: 1200px;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .22;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(85,45,70,.022) 0 1px,
+          transparent 1px 4px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,.12) 0 1px,
+          transparent 1px 5px
+        );
+      mix-blend-mode: multiply;
     }
 
-    .container {
-      width: min(92%, var(--max));
-      margin: 0 auto;
-    }
-
-    .hero {
-      padding: 28px 0 18px;
-    }
-
-    .hero-card {
-      background: var(--card);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.5);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .hero-top {
-      padding: 26px 22px 18px;
-      text-align: center;
-      background: linear-gradient(135deg, rgba(217,79,122,0.12), rgba(255,255,255,0.12));
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 9px 16px;
-      border-radius: 999px;
-      background: #fff;
-      color: var(--accent-dark);
-      font-weight: 700;
-      box-shadow: 0 8px 18px rgba(217,79,122,0.12);
-      font-size: 0.95rem;
-    }
-
-    h1, h2, h3, p {
-      margin-top: 0;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 7vw, 4rem);
-      margin: 16px 0 10px;
-      line-height: 1.05;
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1rem, 3.5vw, 1.2rem);
-      max-width: 760px;
-      margin: 0 auto;
-      opacity: 0.92;
-      line-height: 1.6;
-    }
-
-    .hero-photo {
+    .scene {
       position: relative;
-      min-height: 280px;
-      background: linear-gradient(135deg, #ffd4df, #fff8fa);
-      display: grid;
-      place-items: center;
-      padding: 16px;
+      width: min(92vw, 720px);
+      height: min(94vh, 860px);
+      transform-style: preserve-3d;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .hero-photo img {
-      width: 100%;
-      height: min(56vw, 430px);
-      object-fit: cover;
-      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-      border: 6px solid rgba(255,255,255,0.9);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-note {
+    .floor-shadow {
       position: absolute;
-      right: 18px;
+      left: 50%;
+      bottom: 6%;
+      width: 52%;
+      height: 8%;
+      transform: translateX(-50%) rotateX(72deg);
+      border-radius: 50%;
+      background: rgba(79, 38, 62, .26);
+      filter: blur(24px);
+      transition: all .9s ease;
+    }
+
+    .scene.open .floor-shadow {
+      width: 60%;
+      opacity: .9;
+    }
+
+    /* =========================
+       RAMO DE TULIPANES
+       ========================= */
+
+    .bouquet {
+      position: absolute;
+      left: 50%;
+      bottom: 22%;
+      width: 450px;
+      height: 500px;
+      transform: translateX(-50%) translateY(230px) scale(.62);
+      transform-origin: 50% 100%;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 8;
+      transition:
+        transform 1.15s cubic-bezier(.18,.82,.22,1.1),
+        opacity .55s ease .2s;
+    }
+
+    .scene.open .bouquet {
+      transform: translateX(-50%) translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .stem {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 7px;
+      height: 305px;
+      border-radius: 999px;
+      transform-origin: bottom center;
+      background:
+        linear-gradient(90deg,
+          #173817 0%,
+          var(--stem2) 30%,
+          var(--stem1) 52%,
+          #2a622d 72%,
+          #143414 100%);
+      box-shadow:
+        inset 1px 0 rgba(255,255,255,.18),
+        2px 3px 5px rgba(0,0,0,.12);
+    }
+
+    .s1 { transform: translateX(-116px) rotate(-19deg); }
+    .s2 { transform: translateX(-85px) rotate(-14deg); }
+    .s3 { transform: translateX(-54px) rotate(-9deg); }
+    .s4 { transform: translateX(-16px) rotate(-2deg); }
+    .s5 { transform: translateX(18px) rotate(5deg); }
+    .s6 { transform: translateX(52px) rotate(10deg); }
+    .s7 { transform: translateX(85px) rotate(14deg); }
+    .s8 { transform: translateX(115px) rotate(18deg); }
+
+    .leaf {
+      position: absolute;
+      width: 92px;
+      height: 34px;
+      border-radius: 100% 0 100% 0;
+      transform-origin: 0 50%;
+      background:
+        radial-gradient(circle at 68% 28%, rgba(255,255,255,.20), transparent 20%),
+        linear-gradient(145deg, var(--leaf1), var(--leaf2) 55%, var(--leaf3));
+      box-shadow:
+        inset 0 1px rgba(255,255,255,.14),
+        3px 5px 7px rgba(0,0,0,.11);
+      overflow: hidden;
+    }
+
+    .leaf::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 50%;
+      width: 84%;
+      height: 1px;
+      background: rgba(230,255,210,.36);
+      transform: rotate(-18deg);
+      transform-origin: left;
+      box-shadow:
+        18px -7px 0 rgba(230,255,210,.16),
+        20px 7px 0 rgba(230,255,210,.12);
+    }
+
+    .l1 { left: 124px; bottom: 130px; transform: rotate(-156deg); }
+    .l2 { left: 164px; bottom: 200px; transform: rotate(-30deg) scale(.92); }
+    .l3 { left: 232px; bottom: 120px; transform: rotate(16deg); }
+    .l4 { left: 258px; bottom: 192px; transform: rotate(23deg) scale(.88); }
+    .l5 { left: 98px; bottom: 228px; transform: rotate(-148deg) scale(.78); }
+    .l6 { left: 274px; bottom: 258px; transform: rotate(28deg) scale(.72); }
+
+    .tulip {
+      --size: 110px;
+      position: absolute;
+      width: var(--size);
+      height: calc(var(--size) * 1.15);
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 10px 8px rgba(108, 40, 82, .12));
+    }
+
+    .head {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+    }
+
+    .petal {
+      position: absolute;
+      bottom: 10px;
+      width: 44%;
+      height: 74%;
+      border-radius: 58% 58% 22% 22%;
+      box-shadow:
+        inset 5px 8px 11px rgba(255,255,255,.22),
+        inset -7px -9px 12px rgba(108,26,63,.18);
+    }
+
+    .petal.main {
+      left: 28%;
+      z-index: 3;
+      transform: translateZ(12px);
+      background:
+        radial-gradient(circle at 40% 26%, rgba(255,255,255,.55), transparent 18%),
+        linear-gradient(180deg, var(--petal1), var(--petal2) 42%, var(--petal3) 72%, var(--petal4));
+      clip-path: polygon(50% 0, 85% 18%, 100% 46%, 93% 100%, 7% 100%, 0 46%, 15% 18%);
+    }
+
+    .petal.left {
+      left: 8%;
+      transform: rotate(-18deg) translateY(12px);
+      background:
+        radial-gradient(circle at 40% 26%, rgba(255,255,255,.45), transparent 18%),
+        linear-gradient(180deg, var(--petal1), var(--petal2) 42%, var(--petal3) 72%, var(--petal4));
+      clip-path: polygon(54% 0, 82% 24%, 96% 48%, 100% 100%, 16% 100%, 0 50%, 20% 20%);
+    }
+
+    .petal.right {
+      right: 8%;
+      transform: rotate(18deg) translateY(12px);
+      background:
+        radial-gradient(circle at 40% 26%, rgba(255,255,255,.45), transparent 18%),
+        linear-gradient(180deg, var(--petal1), var(--petal2) 42%, var(--petal3) 72%, var(--petal4));
+      clip-path: polygon(46% 0, 80% 20%, 100% 50%, 84% 100%, 0 100%, 4% 48%, 18% 24%);
+    }
+
+    .petal.back {
+      left: 29%;
+      width: 42%;
+      height: 68%;
+      z-index: 0;
+      opacity: .9;
+      transform: translateY(4px) scale(.95);
+      background:
+        linear-gradient(180deg, #ffc8e8, #ef79b5 52%, #a93d73);
+      clip-path: polygon(50% 0, 84% 20%, 100% 54%, 92% 100%, 8% 100%, 0 54%, 16% 20%);
+    }
+
+    .tulip.alt .petal.main,
+    .tulip.alt .petal.left,
+    .tulip.alt .petal.right {
+      background:
+        radial-gradient(circle at 40% 26%, rgba(255,255,255,.55), transparent 18%),
+        linear-gradient(180deg, var(--petalB1), var(--petalB2) 40%, var(--petalB3) 68%, var(--petalB4));
+      box-shadow:
+        inset 5px 8px 11px rgba(255,255,255,.22),
+        inset -7px -9px 12px rgba(72, 31, 109, .20);
+    }
+
+    .tulip.alt .petal.back {
+      background:
+        linear-gradient(180deg, #edd0ff, #bc86f7 52%, #7b4ec5);
+    }
+
+    .inner {
+      position: absolute;
+      left: 50%;
       bottom: 18px;
-      background: rgba(255,255,255,0.9);
-      padding: 12px 14px;
-      border-radius: 14px;
-      font-size: 0.92rem;
-      max-width: 240px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      width: 18%;
+      height: 26%;
+      transform: translateX(-50%) translateZ(8px);
+      border-radius: 44%;
+      background:
+        linear-gradient(180deg, rgba(126,26,68,.20), rgba(82,18,46,.45));
+      filter: blur(1px);
+      opacity: .5;
+      z-index: 2;
     }
 
-    .section {
-      padding: 18px 0 10px;
+    .base {
+      position: absolute;
+      left: 50%;
+      bottom: 5px;
+      width: 28%;
+      height: 16%;
+      transform: translateX(-50%);
+      border-radius: 0 0 45% 45%;
+      background:
+        linear-gradient(180deg, #418537, #235022);
+      z-index: 2;
+      box-shadow:
+        inset 0 2px 3px rgba(255,255,255,.1),
+        0 2px 3px rgba(0,0,0,.10);
+      clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%);
     }
 
-    .section-title {
-      font-size: clamp(1.5rem, 4.8vw, 2.2rem);
-      margin-bottom: 8px;
-      text-align: center;
+    .f1 { --size: 118px; left: 160px; top: 6px; transform: rotate(-2deg) translateZ(30px); z-index: 10; }
+    .f2 { --size: 110px; left: 80px; top: 64px; transform: rotate(-9deg) translateZ(14px); z-index: 8; }
+    .f3 { --size: 110px; right: 84px; top: 64px; transform: rotate(8deg) translateZ(16px); z-index: 8; }
+    .f4 { --size: 102px; left: 28px; top: 142px; transform: rotate(-14deg) translateZ(8px); z-index: 6; }
+    .f5 { --size: 120px; left: 162px; top: 132px; transform: rotate(0deg) translateZ(34px); z-index: 11; }
+    .f6 { --size: 104px; right: 28px; top: 144px; transform: rotate(15deg) translateZ(8px); z-index: 6; }
+    .f7 { --size: 98px; left: 96px; top: 222px; transform: rotate(-6deg) translateZ(16px); z-index: 7; }
+    .f8 { --size: 98px; right: 96px; top: 222px; transform: rotate(7deg) translateZ(16px); z-index: 7; }
+
+    /* =========================
+       CAJA 3D
+       ========================= */
+
+    .gift {
+      position: absolute;
+      left: 50%;
+      bottom: 9%;
+      width: 280px;
+      height: 260px;
+      transform: translateX(-50%);
+      transform-style: preserve-3d;
+      z-index: 20;
+      cursor: pointer;
+      outline: none;
     }
 
-    .section-intro {
-      text-align: center;
-      max-width: 760px;
-      margin: 0 auto 24px;
-      line-height: 1.65;
-      opacity: 0.9;
+    .gift:focus-visible {
+      filter: drop-shadow(0 0 .6rem rgba(255, 155, 210, .65));
     }
 
-    .grid {
-      display: grid;
-      gap: 18px;
-    }
-
-    .moments {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.5);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
+    .box {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 240px;
+      height: 175px;
+      transform: translateX(-50%);
+      border-radius: 5px 5px 14px 14px;
       overflow: hidden;
+      background:
+        linear-gradient(90deg,
+          rgba(82, 32, 57, .13),
+          transparent 18% 82%,
+          rgba(82, 32, 57, .17)
+        ),
+        repeating-linear-gradient(
+          115deg,
+          rgba(255,255,255,.05) 0 1px,
+          transparent 1px 7px
+        ),
+        linear-gradient(145deg, var(--box1), var(--box2) 58%, var(--box3));
+      box-shadow:
+        inset 7px 0 12px rgba(255,255,255,.18),
+        inset -10px -8px 14px rgba(79,28,53,.18),
+        0 22px 28px rgba(86,32,61,.23);
     }
 
-    .photo-box {
-      aspect-ratio: 4 / 5;
-      background: linear-gradient(135deg, #ffd3de, #fff8fa);
-      overflow: hidden;
-    }
-
-    .photo-box img {
-      width: 100%;
+    .box::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 52px;
       height: 100%;
-      object-fit: cover;
+      transform: translateX(-50%);
+      background:
+        linear-gradient(90deg,
+          #c66892,
+          var(--ribbon1) 28%,
+          var(--ribbon2) 58%,
+          var(--ribbon3)
+        );
+      box-shadow:
+        inset 5px 0 7px rgba(255,255,255,.16),
+        inset -5px 0 7px rgba(90,32,60,.15);
     }
 
-    .card-body {
-      padding: 18px;
+    .box::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 44%;
+      width: 100%;
+      height: 40px;
+      background:
+        linear-gradient(180deg,
+          #cb7298,
+          var(--ribbon1) 26%,
+          var(--ribbon2) 60%,
+          var(--ribbon3)
+        );
+      box-shadow:
+        inset 0 4px 6px rgba(255,255,255,.12),
+        inset 0 -4px 7px rgba(88,35,58,.12);
     }
 
-    .card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
+    .lid {
+      position: absolute;
+      left: 50%;
+      bottom: 159px;
+      width: 270px;
+      height: 63px;
+      transform-origin: 20% 85%;
+      transform: translateX(-50%) translateZ(18px);
+      border-radius: 10px;
+      z-index: 5;
+      transition:
+        transform 1.05s cubic-bezier(.22,.8,.25,1.05),
+        filter .7s ease;
+      background:
+        linear-gradient(90deg,
+          rgba(86,32,56,.11),
+          transparent 18% 82%,
+          rgba(86,32,56,.15)
+        ),
+        repeating-linear-gradient(
+          112deg,
+          rgba(255,255,255,.05) 0 1px,
+          transparent 1px 7px
+        ),
+        linear-gradient(145deg, #f7c2da, #e18ab5 60%, #a34370);
+      box-shadow:
+        inset 6px 7px 10px rgba(255,255,255,.2),
+        inset -8px -8px 11px rgba(92,34,60,.17),
+        0 12px 14px rgba(84,34,57,.20);
     }
 
-    .card p {
-      line-height: 1.65;
-      margin-bottom: 0;
+    .lid::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 55px;
+      height: 100%;
+      transform: translateX(-50%);
+      background:
+        linear-gradient(90deg,
+          #c66f97,
+          var(--ribbon1) 28%,
+          var(--ribbon2) 56%,
+          var(--ribbon3)
+        );
     }
 
-    .timeline {
-      display: grid;
-      gap: 16px;
-      margin-top: 10px;
+    .lid::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 18px;
+      transform: translateY(-50%);
+      background:
+        linear-gradient(180deg,
+          #cc759c,
+          var(--ribbon1) 28%,
+          var(--ribbon2) 58%,
+          var(--ribbon3)
+        );
     }
 
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 96px 1fr;
-      gap: 14px;
-      align-items: start;
-      background: var(--card);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.5);
+    .bow {
+      position: absolute;
+      left: 50%;
+      bottom: 210px;
+      width: 124px;
+      height: 74px;
+      transform: translateX(-50%) translateZ(30px);
+      z-index: 7;
+      transition: transform 1.05s cubic-bezier(.22,.8,.25,1.05);
     }
 
-    .year-tag {
-      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-      color: white;
-      border-radius: 16px;
-      padding: 14px 12px;
-      font-weight: 700;
-      text-align: center;
-      min-height: 74px;
-      display: grid;
-      place-items: center;
+    .bow::before,
+    .bow::after {
+      content: "";
+      position: absolute;
+      top: 12px;
+      width: 64px;
+      height: 47px;
+      border-radius: 52% 48% 56% 44%;
+      background:
+        radial-gradient(circle at 34% 28%, rgba(255,255,255,.35), transparent 24%),
+        linear-gradient(145deg, var(--ribbon1), var(--ribbon2) 58%, var(--ribbon3));
+      box-shadow:
+        inset -7px -7px 10px rgba(94,35,61,.15),
+        0 6px 8px rgba(89,39,61,.14);
     }
 
-    .letter {
-      padding: 12px 0 6px;
+    .bow::before {
+      left: 4px;
+      transform: rotate(22deg);
     }
 
-    .letter-box {
-      background: rgba(255,255,255,0.88);
-      border-radius: var(--radius-xl);
-      padding: 24px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.6);
-      line-height: 1.8;
-      font-size: 1.04rem;
+    .bow::after {
+      right: 4px;
+      transform: rotate(-22deg);
     }
 
-    .gallery {
-      grid-template-columns: repeat(2, 1fr);
+    .knot {
+      position: absolute;
+      left: 50%;
+      top: 19px;
+      width: 36px;
+      height: 36px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      z-index: 3;
+      background:
+        radial-gradient(circle at 35% 30%, #fff3f8, #e1a3c2 55%, #bb658e);
+      box-shadow:
+        inset -5px -6px 8px rgba(100,35,64,.17),
+        0 4px 6px rgba(82,33,56,.14);
     }
 
-    .gallery .photo-box {
-      aspect-ratio: 1 / 1;
-      border-radius: var(--radius-lg);
+    .gift:hover .lid,
+    .gift:hover .bow {
+      filter: brightness(1.035);
     }
 
-    .gallery .photo-box img {
-      border-radius: var(--radius-lg);
+    .gift:hover {
+      animation: tiny-bounce .75s ease-in-out infinite alternate;
     }
 
-    .footer {
-      padding: 26px 0 38px;
-      text-align: center;
-      opacity: 0.82;
-      font-size: 0.95rem;
+    @keyframes tiny-bounce {
+      from { transform: translateX(-50%) translateY(0); }
+      to   { transform: translateX(-50%) translateY(-4px); }
     }
 
-    .edit-tip {
-      margin: 22px auto 0;
-      max-width: 900px;
-      background: rgba(255,255,255,0.7);
-      border: 1px dashed rgba(183,60,100,0.35);
-      padding: 16px 18px;
-      border-radius: 18px;
-      line-height: 1.6;
-      font-size: 0.97rem;
+    .scene.open .gift {
+      animation: none;
+      cursor: default;
     }
 
-    .heart {
-      color: var(--accent-dark);
-      font-weight: 700;
+    .scene.open .lid {
+      transform:
+        translateX(-50%)
+        translate(-105px, -62px)
+        rotateZ(-18deg)
+        rotateY(-24deg)
+        rotateX(16deg)
+        translateZ(36px);
     }
 
-    @media (max-width: 860px) {
-      .moments {
-        grid-template-columns: 1fr 1fr;
+    .scene.open .bow {
+      transform:
+        translateX(-50%)
+        translate(-104px, -65px)
+        rotateZ(-18deg)
+        rotateY(-24deg)
+        rotateX(16deg)
+        translateZ(48px);
+    }
+
+    .glow {
+      position: absolute;
+      left: 50%;
+      bottom: 155px;
+      width: 250px;
+      height: 175px;
+      transform: translateX(-50%) scale(.35);
+      border-radius: 50%;
+      opacity: 0;
+      z-index: 4;
+      pointer-events: none;
+      background:
+        radial-gradient(circle,
+          rgba(255, 190, 230, .72),
+          rgba(223, 157, 255, .28) 38%,
+          transparent 72%);
+      filter: blur(6px);
+      transition:
+        opacity .8s ease .15s,
+        transform 1s ease .15s;
+    }
+
+    .scene.open .glow {
+      opacity: 1;
+      transform: translateX(-50%) scale(1.35);
+    }
+
+    .spark {
+      position: absolute;
+      left: 50%;
+      bottom: 210px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      opacity: 0;
+      z-index: 12;
+      pointer-events: none;
+      background: #ff9dcf;
+      box-shadow: 0 0 12px #ffd5ea;
+    }
+
+    .scene.open .spark {
+      animation: sparkle 1.8s ease-out forwards;
+    }
+
+    .sp1 { --x: -150px; --y: -200px; animation-delay: .28s !important; }
+    .sp2 { --x: -95px;  --y: -278px; animation-delay: .40s !important; }
+    .sp3 { --x: -30px;  --y: -320px; animation-delay: .22s !important; }
+    .sp4 { --x: 52px;   --y: -305px; animation-delay: .34s !important; }
+    .sp5 { --x: 112px;  --y: -248px; animation-delay: .48s !important; }
+    .sp6 { --x: 156px;  --y: -178px; animation-delay: .30s !important; }
+
+    @keyframes sparkle {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(.2);
       }
-
-      .hero-note {
-        position: static;
-        margin-top: 12px;
-        max-width: 100%;
+      22% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--x)), var(--y)) scale(1.45);
       }
     }
 
-    @media (max-width: 640px) {
-      .hero {
-        padding-top: 18px;
+    @media (max-width: 620px) {
+      .scene {
+        transform: scale(.88);
       }
+    }
 
-      .hero-top {
-        padding: 22px 16px 16px;
+    @media (max-height: 720px) {
+      .scene {
+        transform: scale(.8);
       }
+    }
 
-      .hero-photo {
-        padding: 12px;
-      }
-
-      .hero-photo img {
-        height: 240px;
-        border-width: 4px;
-      }
-
-      .moments,
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .timeline-item {
-        grid-template-columns: 1fr;
-      }
-
-      .year-tag {
-        min-height: auto;
-      }
-
-      .letter-box {
-        padding: 20px 16px;
+    @media (prefers-reduced-motion: reduce) {
+      .gift,
+      .lid,
+      .bow,
+      .bouquet,
+      .spark,
+      .glow {
+        animation: none !important;
+        transition-duration: .01ms !important;
       }
     }
   </style>
 </head>
+
 <body>
-  <header class="hero">
-    <div class="container">
-      <div class="hero-card">
-        <div class="hero-top">
-          <div class="badge">3 años juntos 💖</div>
-          <h1>Nuestra historia</h1>
-          <p class="hero-subtitle">
-            Una forma simple de recordarte lo especial que sos para mi y lo feliz que me haces.
-          </p>
-        </div>
+  <main class="scene" id="scene">
+    <div class="floor-shadow"></div>
+    <div class="glow"></div>
 
-        <div class="hero-photo">
-          <img src="img/fotoprincipal.jpeg" alt="Foto principal de la pareja">
-          <div class="hero-note">
-            <strong>De Jese para Jeisel:</strong><br>
-            Vos siempre tenes que tener en mente lo mucho que te amo muchachita.
-          </div>
+    <span class="spark sp1"></span>
+    <span class="spark sp2"></span>
+    <span class="spark sp3"></span>
+    <span class="spark sp4"></span>
+    <span class="spark sp5"></span>
+    <span class="spark sp6"></span>
+
+    <section class="bouquet" aria-hidden="true">
+      <div class="stem s1"></div>
+      <div class="stem s2"></div>
+      <div class="stem s3"></div>
+      <div class="stem s4"></div>
+      <div class="stem s5"></div>
+      <div class="stem s6"></div>
+      <div class="stem s7"></div>
+      <div class="stem s8"></div>
+
+      <div class="leaf l1"></div>
+      <div class="leaf l2"></div>
+      <div class="leaf l3"></div>
+      <div class="leaf l4"></div>
+      <div class="leaf l5"></div>
+      <div class="leaf l6"></div>
+
+      <div class="tulip f1">
+        <div class="head">
+          <span class="petal back"></span>
+          <span class="petal left"></span>
+          <span class="petal right"></span>
+          <span class="petal main"></span>
+          <span class="inner"></span>
+          <span class="base"></span>
         </div>
       </div>
+
+      <div class="tulip alt f2">
+        <div class="head">
+          <span class="petal back"></span>
+          <span class="petal left"></span>
+          <span class="petal right"></span>
+          <span class="petal main"></span>
+          <span class="inner"></span>
+          <span class="base"></span>
+        </div>
+      </div>
+
+      <div class="tulip f3">
+        <div class="head">
+          <span class="petal back"></span>
+          <span class="petal left"></span>
+          <span class="petal right"></span>
+          <span class="petal main"></span>
+          <span class="inner"></span>
+          <span class="base"></span>
+        </div>
+      </div>
+
+      <div class="tulip alt f4">
+        <div class="head">
+          <span class="petal back"></span>
+          <span class="petal left"></span>
+          <span class="petal right"></span>
+          <span class="petal main"></span>
+          <span class="inner"></span>
+          <span class="base"></span>
+        </div>
+      </div>
+
+      <div class="tulip f5">
+        <div class="head">
+          <span class="petal back"></span>
+          <span class="petal left"></span>
+          <span class="petal right"></span>
+          <span class="petal main"></span>
+          <span class="inner"></span>
+          <span class="base"></span>
+        </div>
+      </div>
+
+      <div class="tulip alt f6">
+        <div class="head">
+          <span class="petal back"></span>
+          <span class="petal left"></span>
+          <span class="petal right"></span>
+          <span class="petal main"></span>
+          <span class="inner"></span>
+          <span class="base"></span>
+        </div>
+      </div>
+
+      <div class="tulip f7">
+        <div class="head">
+          <span class="petal back"></span>
+          <span class="petal left"></span>
+          <span class="petal right"></span>
+          <span class="petal main"></span>
+          <span class="inner"></span>
+          <span class="base"></span>
+        </div>
+      </div>
+
+      <div class="tulip alt f8">
+        <div class="head">
+          <span class="petal back"></span>
+          <span class="petal left"></span>
+          <span class="petal right"></span>
+          <span class="petal main"></span>
+          <span class="inner"></span>
+          <span class="base"></span>
+        </div>
+      </div>
+    </section>
+
+    <div
+      class="gift"
+      id="gift"
+      role="button"
+      tabindex="0"
+      aria-label="Abrir regalo"
+      aria-expanded="false"
+    >
+      <div class="lid"></div>
+      <div class="bow">
+        <div class="knot"></div>
+      </div>
+      <div class="box"></div>
     </div>
-  </header>
-
-  <main>
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Tres años, tres capítulos</h2>
-        <p class="section-intro">
-          Tres años que han venido con retos, risas y muchos momentos que no podria imaginar sin vos.
-        </p>
-
-        <div class="grid moments">
-          <article class="card">
-            <div class="photo-box">
-              <!-- FOTO 1 -->
-              <img src="img/inicios.jpeg"> alt="Recuerdo 1" />
-            </div>
-            <div class="card-body">
-              <h3>Cómo empezó todo</h3>
-              <p>
-                Es raro pensar que todo empezo por una coincidencia, pero asi fue, no cambiaria por nada del mundo, y siempre agradecere al destino y Diosito por permitirnos coincidir en un mismo lugar y ponerme a la par de tan perfecta mujer.
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="photo-box">
-              <!-- FOTO 2 -->
-              <img src="img/segunda.jpeg" alt="Recuerdo 2" />
-            </div>
-            <div class="card-body">
-              <h3>Nuestros mejores recuerdos</h3>
-              <p>
-                Siempre recordare con mucho amor y cariño las noches en las que simpelemente puedo platicar con vos libremente aunque sean pocos momentos, estar a tu lado y tenerte cerca escucharte y poder reirnos y platicar me hace muy feliz, puede sonar poco pero disfruto que momentos tan simples sean tan perfectos estando con vos.
-              </p>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="photo-box">
-              <!-- FOTO 3 -->
-              <img src="img/pastel.jpeg" alt="Recuerdo 3" />
-            </div>
-            <div class="card-body">
-              <h3>Lo que viene</h3>
-              <p>
-                El futuro nos depara muchas cosas, espero tenerte a mi lado para poder vivirlo juntos, sos la mujer con la que quiero estar, y la personita mas dulce que siempre tendra mi corazon y amor a su disposicion.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Mis cosas favoritas de vos</h2>
-        <p class="section-intro">
-          Sin olvidar que todo de vos me encanta, pero algunas cosas que me encantan mas son:
-
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="year-tag">1</div>
-            <div>
-              <h3>Jeisel es una persona que perfectamente se le puede definir por su creatividad.</h3>
-              <p>
-                Tu forma de ingeniar soluciones de hacer cosas diferentes y creativas me encanta, y siempre me sorprenden tus ideas, pienso como si quiera alguien puede dudar de los talentos de esta mujer si es el estandard que todas deberian aspirar a ser.
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="year-tag">2</div>
-            <div>
-              <h3>Jeisel es una mujer linda</h3>
-              <p>
-                Jeisel es una mujer linda por simple que suene decirlo tiene mucho mas, el como te vestis el como te arreglas tu estilo, tu forma de ser, son cosas que me encantan, sos una mujer guapa, inteligente y divertida, no puedo evitar verte y decir ella es mi mujer la mas preciosa de todas. 
-              </p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="year-tag">3</div>
-            <div>
-              <h3>Jeisel y su enorme corazon</h3>
-              <p>
-                Algo que siempre he valorado mucho y es sin duda tu mayor virtud es tu corazon, tu forma tan sincera de amar y preocuparte por las personas que queres, el ver ese tipo de amor solo demuestra el gran corazon que tenes y que no mereces menos, una niña sensible y cariñosa, por eso siempre hare lo posible para cuidar el corazon de mi princesa hermosa.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section letter">
-      <div class="container">
-        <h2 class="section-title">Carta para ti</h2>
-        <div class="letter-box">
-          <p>
-            Miammor,
-          </p>
-          <p>
-            No hay nada que no te haya dicho ya, han sido 3 años muy lindos en los que ambos hemos aprendido sobre el amor y todo lo que conlleva estar con una persona, he aprendido lo que es el amor sincer y puro y lo que es amar una persona incondicionalemente en las buenas y en las malas, pase lo que pase siempre vas a tenerme ahi para ser tu pilar en la dia mas brillante y en la noche mas oscura solo puedo pensar en formas diferentes de demostrarte lo valiosa que sos para mi pero a la vez se que no existe en este mundo forma de demostrar tanto amor y si la existiera una forma se que seria una mentira por que no hay forma de demostrar algo tan infinito e increible.
-          </p>
-          <p>
-            Gracias por hacerme un hombre tan feliz, por haber llegado a mi vida a hacerla mucho mejor, espero estos años tambien poder haber hecho que tu vida fuera un poco mas feliz.
-          </p>
-          <p>
-            Te amo mucho,<br>
-            <strong>De Jese para Jeisel
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Galería de recuerdos</h2>
-        <p class="section-intro">
-        </p>
-
-        <div class="grid gallery">
-          <div class="photo-box">
-            <!-- GALERÍA FOTO 1 -->
-            <img src="img/recuero1.jpeg" alt="Foto de galería 1" />
-          </div>
-          <div class="photo-box">
-            <!-- GALERÍA FOTO 2 -->
-            <img src="img/recuerdo2.jpeg" alt="Foto de galería 2" />
-          </div>
-          <div class="photo-box">
-            <!-- GALERÍA FOTO 3 -->
-            <img src="img/recuerdo3.jpeg" alt="Foto de galería 3" />
-          </div>
-          <div class="photo-box">
-            <!-- GALERÍA FOTO 4 -->
-            <img src="img/recuerdo4.jpeg" alt="Foto de galería 4" />
-          </div>
-        </div>
-
-        <div class="edit-tip">
-          <strong></strong> 
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer class="footer container">
-    Hecho con amor y cariño para celebrar <span class="heart">3 años</span> con la mejor novia.
-  </footer>
+  <script>
+    const scene = document.getElementById("scene");
+    const gift = document.getElementById("gift");
+
+    function openGift() {
+      if (scene.classList.contains("open")) return;
+      scene.classList.add("open");
+      gift.setAttribute("aria-expanded", "true");
+    }
+
+    gift.addEventListener("click", openGift);
+
+    gift.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openGift();
+      }
+    });
+  </script>
 </body>
 </html>
